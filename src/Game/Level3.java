@@ -12,11 +12,11 @@ import java.awt.event.KeyEvent;
  *
  * @author agusbudianto2
  */
-public class Level2 extends javax.swing.JPanel {
+public class Level3 extends javax.swing.JPanel {
     private Thread time, mover;
-    public Level2(JScrollPane scrollPane, JFrame frameLevel2) {
+    public Level3(JScrollPane scrollPane, JFrame frameLevel3) {
         this.scrollPane = scrollPane;
-        this.frameLevel2 = frameLevel2;
+        this.frameLevel3 = frameLevel3;
         initComponents();
         startThread();
 
@@ -53,22 +53,25 @@ public class Level2 extends javax.swing.JPanel {
             public void run() {
                 int ms = 0;
                 while (true) {
+                    if(ms%4==0){
+                        mobil4.setLocation(mobil4.getX() - 1 , mobil4.getY());//4
+                    }
                     if(ms%3==0) {
                         mobil1.setLocation(mobil1.getX() + 1, mobil1.getY()); //3
-                        mobil2.setLocation(mobil2.getX() - 1 , mobil2.getY());//3
+                        mobil2.setLocation(mobil2.getX() + 1 , mobil2.getY());//3
                         mobil9.setLocation(mobil9.getX() + 1, mobil9.getY());//3
                     }
                     if(ms%2==0) {
-                        mobil4.setLocation(mobil4.getX() + 1 , mobil4.getY());//2
                         mobil5.setLocation(mobil5.getX() - 1 , mobil5.getY());//2
                         mobil8.setLocation(mobil8.getX() - 1 , mobil8.getY());//2
+                        mobil10.setLocation(mobil10.getX() + 1 , mobil10.getY());//2
                     }
                     if(ms%1==0){
-                        mobil3.setLocation(mobil3.getX() + 1, mobil3.getY());//4
-                        mobil6.setLocation(mobil6.getX() - 1, mobil6.getY());//4
-                        mobil7.setLocation(mobil7.getX() - 1, mobil7.getY());//4
+                        mobil3.setLocation(mobil3.getX() + 1, mobil3.getY());//1
+                        mobil6.setLocation(mobil6.getX() - 1, mobil6.getY());//1
+                        mobil7.setLocation(mobil7.getX() - 1, mobil7.getY());//1
                     }
-                    if (new Method().isCollide(mobil1, kucing) || new Method().isCollide(mobil2, kucing) || new Method().isCollide(mobil3, kucing) || new Method().isCollide(mobil4, kucing) || new Method().isCollide(mobil5, kucing) || new Method().isCollide(mobil6, kucing) || new Method().isCollide(mobil7, kucing) || new Method().isCollide(mobil8, kucing) || new Method().isCollide(mobil9, kucing)){
+                    if (new Method().isCollide(mobil1, kucing) || new Method().isCollide(mobil2, kucing) || new Method().isCollide(mobil3, kucing) || new Method().isCollide(mobil4, kucing) || new Method().isCollide(mobil5, kucing) || new Method().isCollide(mobil6, kucing) || new Method().isCollide(mobil7, kucing) || new Method().isCollide(mobil8, kucing) || new Method().isCollide(mobil9, kucing)|| new Method().isCollide(mobil10, kucing)){
                         endGame();
                     }
                     if (new Method().isCollide(kucing, winarea) && ms%1000==0) {
@@ -83,8 +86,8 @@ public class Level2 extends javax.swing.JPanel {
                     if (mobil1.getX() + mobil1.getWidth() > 1020) {
                         mobil1.setLocation(0-mobil1.getWidth(), mobil1.getY());
                     }
-                    if (mobil2.getX() + mobil2.getWidth() < 0) {
-                        mobil2.setLocation(1020, mobil2.getY());
+                    if (mobil2.getX() + mobil2.getWidth() > 1020) {
+                        mobil2.setLocation(0-mobil2.getWidth(), mobil2.getY());
                     }
                     if (mobil3.getX() + mobil3.getWidth() > 1020) {
                         mobil3.setLocation(0-mobil3.getWidth(), mobil3.getY());
@@ -107,6 +110,9 @@ public class Level2 extends javax.swing.JPanel {
                     if(mobil9.getX() + mobil9.getWidth() > 1020){
                         mobil9.setLocation(0-mobil9.getWidth(), mobil9.getY());
                     }
+                    if(mobil10.getX() + mobil10.getWidth() > 1020){
+                        mobil10.setLocation(0-mobil10.getWidth(), mobil10.getY());
+                    }
                 }
             }
         };
@@ -127,6 +133,7 @@ public class Level2 extends javax.swing.JPanel {
         mobil7 = new javax.swing.JLabel();
         mobil8 = new javax.swing.JLabel();
         mobil9 = new javax.swing.JLabel();
+        mobil10 = new javax.swing.JLabel();
         pagar6 = new javax.swing.JLabel();
         pagar5 = new javax.swing.JLabel();
         pagar4 = new javax.swing.JLabel();
@@ -166,11 +173,11 @@ public class Level2 extends javax.swing.JPanel {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
 //                scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-                frameLevel2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frameLevel2.getContentPane().add(scrollPane);
-                frameLevel2.pack();
-                frameLevel2.setVisible(true);
-                frameLevel2.setLocationRelativeTo(null);
+                frameLevel3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frameLevel3.getContentPane().add(scrollPane);
+                frameLevel3.pack();
+                frameLevel3.setVisible(true);
+                frameLevel3.setLocationRelativeTo(null);
                 scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
 
             }
@@ -208,8 +215,7 @@ public class Level2 extends javax.swing.JPanel {
         add(winPanel);
 
         // Lose Panel
-
-        losePanel.setBounds(this.getX()+220,this.getY()+250, 600, 420);
+        losePanel.setBounds(this.getX()+220, this.getY()+400, 600, 420);
         loseLabel.setBounds(losePanel.getBounds());
         loseLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/lose.png")));
         losePanel.add(loseLabel);
@@ -217,31 +223,31 @@ public class Level2 extends javax.swing.JPanel {
         losePanel.setVisible(false);
         add(losePanel);
 
-        mobil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightImage/merah.png"))); // NOI18N
+        mobil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightImage/taxi.png"))); // NOI18N
         add(mobil1);
-        mobil1.setBounds(0, 725, 57, 30);
+        mobil1.setBounds(0, 695, 57, 30);
 
-        mobil2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/taxi.png"))); // NOI18N
+        mobil2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightImage/merah.png"))); // NOI18N
         add(mobil2);
-        mobil2.setBounds(974, 680, 57, 30);
+        mobil2.setBounds(974, 640, 57, 30);
 
         mobil3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightImage/biru.png"))); // NOI18N
         add(mobil3);
-        mobil3.setBounds(0, 503, 57, 30);
+        mobil3.setBounds(0, 585, 57, 30);
 
-        mobil4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightImage/merah.png"))); // NOI18N
+        mobil4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/taxi.png"))); // NOI18N
         add(mobil4);
-        mobil4.setBounds(974, 453, 57, 30);
+        mobil4.setBounds(974, 516, 57, 30);
 
-        mobil5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/polisi.png"))); // NOI18N
+        mobil5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/taxi.png"))); // NOI18N
         add(mobil5);
-        mobil5.setBounds(0, 403, 57, 30);
+        mobil5.setBounds(974, 461, 57, 30);
 
         mobil6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/merah.png"))); // NOI18N
         add(mobil6);
-        mobil6.setBounds(200, 351, 57, 30);
+        mobil6.setBounds(200, 406, 57, 30);
 
-        mobil7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/taxi.png"))); // NOI18N
+        mobil7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/leftImage/polisi.png"))); // NOI18N
         add(mobil7);
         mobil7.setBounds(974, 351, 57, 30);
 
@@ -252,6 +258,10 @@ public class Level2 extends javax.swing.JPanel {
         mobil9.setIcon(new ImageIcon(getClass().getResource("/rightImage/polisi.png")));
         add(mobil9);
         mobil9.setBounds(0, 128, 57, 30);
+
+        mobil10.setIcon(new ImageIcon(getClass().getResource("/rightImage/merah.png")));
+        add(mobil10);
+        mobil10.setBounds(0, 930, 57, 30);
 
         pagar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pagar.png"))); // NOI18N
         add(pagar6);
@@ -367,21 +377,21 @@ public class Level2 extends javax.swing.JPanel {
         add(rumput2);
         rumput2.setBounds(0, 220, 1020, 110);
 
-        jalan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jalan2.png"))); // NOI18N
+        jalan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jalan4.png"))); // NOI18N
         add(jalan2);
-        jalan2.setBounds(0, 330, 1024, 220);
+        jalan2.setBounds(0, 330, 1024, 474);
 
         rumput3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rumput.png"))); // NOI18N
         add(rumput3);
-        rumput3.setBounds(0, 550, 1020, 110);
+        rumput3.setBounds(0, 804, 1020, 110);
 
         jalan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jalan1.png"))); // NOI18N
         add(jalan3);
-        jalan3.setBounds(0, 660, 1024, 110);
+        jalan3.setBounds(0, 914, 1024, 110);
 
         rumput4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rumput.png"))); // NOI18N
         add(rumput4);
-        rumput4.setBounds(0, 770, 1020, 110);
+        rumput4.setBounds(0, 1024, 1020, 110);
 
 
     }
@@ -454,31 +464,24 @@ public class Level2 extends javax.swing.JPanel {
             if(key == KeyEvent.VK_ENTER) {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new Level2(new JScrollPane(), new JFrame());
+                        new Level3(new JScrollPane(), new JFrame());
                     }
                 });
-                frameLevel2.dispose();
+                frameLevel3.dispose();
             }
             else if(key == KeyEvent.VK_1){
                 new Level1().setVisible(true);
-                frameLevel2.dispose();
+                frameLevel3.dispose();
             }
-            else if(key == KeyEvent.VK_3){
-                new Level3(new JScrollPane(), new JFrame());
-                frameLevel2.dispose();
+            else if(key == KeyEvent.VK_2){
+                new Level2(new JScrollPane(), new JFrame());
+                frameLevel3.dispose();
             }
 
         }
     }
-    public JScrollPane getScrollPane() {
-        return scrollPane;
-    }
 
-    public JFrame getFrameLevel2() {
-        return frameLevel2;
-    }
-
-    private final java.awt.Dimension sizeframe = new java.awt.Dimension(1020, 880);
+    private final java.awt.Dimension sizeframe = new java.awt.Dimension(1020, 1134);
     private boolean win = false;
     private boolean start = true;
     private JPanel winPanel;
@@ -495,6 +498,7 @@ public class Level2 extends javax.swing.JPanel {
     private javax.swing.JLabel mobil7;
     private javax.swing.JLabel mobil8;
     private javax.swing.JLabel mobil9;
+    private JLabel mobil10;
     private javax.swing.JLabel bendera1;
     private javax.swing.JLabel bendera2;
     private javax.swing.JPanel bintang;
@@ -527,5 +531,5 @@ public class Level2 extends javax.swing.JPanel {
     private javax.swing.JLabel rumput4;
     private javax.swing.JLabel second;
     private JScrollPane scrollPane;
-    private JFrame frameLevel2;
+    private JFrame frameLevel3;
 }

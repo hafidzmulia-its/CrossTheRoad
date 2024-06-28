@@ -377,6 +377,10 @@ public class Level1 extends javax.swing.JFrame {
                 new Level2(new JScrollPane(), new JFrame());
                 this.dispose();
             }
+            else if(key == KeyEvent.VK_3){
+                new Level3(new JScrollPane(), new JFrame());
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_formKeyPressed
 
