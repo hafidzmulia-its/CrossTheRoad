@@ -52,6 +52,7 @@ public class Level1 extends javax.swing.JFrame {
                         mobil4.setLocation(mobil4.getX() - 1 , mobil4.getY());//2
                     }
                     if(ms%4==0) mobil3.setLocation(mobil3.getX() + 1, mobil3.getY());//4
+
                     if (new Method().isCollide(mobil1, kucing) || new Method().isCollide(mobil2, kucing) || new Method().isCollide(mobil3, kucing) || new Method().isCollide(mobil4, kucing)) {
                         endGame();
                     }
@@ -101,6 +102,7 @@ public class Level1 extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        //assignment
         bintangPanel = new JPanel();
         winPanel = new JPanel();
         losePanel = new JPanel();
@@ -148,8 +150,8 @@ public class Level1 extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
-        });
-        getContentPane().setLayout(null);
+        }); // gerakin kucing
+        getContentPane().setLayout(null); //nengain isinya
         getContentPane().add(star1);
         getContentPane().add(star2);
         getContentPane().add(star3);
@@ -159,7 +161,7 @@ public class Level1 extends javax.swing.JFrame {
         winPanel.add(winLabel);
         winPanel.setBackground(new Color(0,0,0,0));
         winPanel.setVisible(false);
-        getContentPane().add(winPanel);
+        getContentPane().add(winPanel); //tambahkan winpanel ke frame
 
 
         losePanel.setBounds(this.getX()+220, this.getY()+93, 600, 420);
