@@ -1,4 +1,4 @@
-# Cross The Road: A Java Swing Odyssey
+# Cross The Road: A Platform Based-Strategy Game
 
 Dive into "Cross The Road," a captivating game developed using the robust Java Swing framework, designed to offer players a unique blend of strategy, timing, and quick decision-making. Set across various levels, with Level 3 being a standout for its complexity, players are tasked with navigating through dynamic environments to reach safety on the other side.
 
